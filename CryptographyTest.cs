@@ -21,7 +21,7 @@ namespace ShakaCoinTests
             string privk = "CA1461B5D5F8FDE586C7BC7EA481E988E90CD68754A495EA39C5552EFA0250C8";
             string sig = "8D4D4266B3C5BB55F8F464B27A981108F1716A8CBA61E56A69C814C957F288CB17A49D03A1F352E156254F1185FCF21860CC6191AA3C0FAE6C48F20128F4A601";
 
-            Wallet hk = new Wallet(Hasher.GetBytesFromHexStringQuick(privk));
+            Wallet hk = new Wallet(Hasher.GetBytesFromHexStringQuick(privk), "");
 
             Assert.AreEqual(sig, Hasher.GetHexStringQuick(hk.SignData(Hasher.GetBytesQuick(msg))));
         }
