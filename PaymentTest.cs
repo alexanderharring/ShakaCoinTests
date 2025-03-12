@@ -1,5 +1,7 @@
 ﻿using ShakaCoin.Blockchain;
 using ShakaCoin.PaymentData;
+using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ShakaCoinTests
 {
@@ -64,6 +66,16 @@ namespace ShakaCoinTests
             ix.AddSignature(Hasher.GetBytesFromHexStringQuick("7555EA2E17E4BB244CCE45332D1F5E2C832CC15B286C9C9B97BF7E0A9FCF0897BF58BCD8CC46702756FCA18A9B4831B8AF599C6B67E6EEA10DA9B37153872C0F"));
 
             Assert.IsTrue(ix.VerifySignature(Hasher.GetBytesFromHexStringQuick("7EA43F65AC22A74D4FDF05CD9D8D9E69A03352443916F88E4890E511D4FC0BA0")));
+        }
+
+        [TestMethod]
+        public void VerifyCoinbase()
+        {
+            Input ix = new Input(new byte[32], 0xFF);
+
+            Transaction gTransaction = new Transaction(0b10000000);
+
+            Assert.IsTrue((ix.IsCoinbase() && gTransaction.IsCoinbase()));
         }
 
         //[TestMethod]
