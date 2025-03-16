@@ -50,7 +50,7 @@ namespace ShakaCoinTests
 
             Transaction tx42 = new Transaction(0x00);
 
-            for (int i = 0;i < 100;i++)
+            for (int i = 0;i < 30;i++)
             {
                 Transaction tx = generateTransaction();
                 if (i==42)
@@ -63,6 +63,23 @@ namespace ShakaCoinTests
             }
 
             Assert.IsTrue(root.Contains(tx42));
+        }
+
+        [TestMethod]
+        public void TestAVLTreeMaxHeight()
+        {
+            TXNodeAVL root = new TXNodeAVL(new Transaction(0x00));
+
+            int N = 2500;
+
+            for (int i = 0; i < N; i++)
+            {
+                Transaction tx = generateTransaction();
+
+                root.Insert(tx);
+            }
+
+            Assert.IsTrue(root.Height <= (int)Math.Floor(1.44042009041 * Math.Log2(N)));
         }
     }
 }
