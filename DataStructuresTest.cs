@@ -81,5 +81,21 @@ namespace ShakaCoinTests
 
             Assert.IsTrue(root.Height <= (int)Math.Floor(1.44042009041 * Math.Log2(N)));
         }
+
+        [TestMethod]
+        public void TestMerkleRoot()
+        {
+            Block newBlock = new Block();
+
+            for (int i = 0; i<8; i++)
+            {
+                newBlock.AddTransaction(generateTransaction());
+            }
+
+            newBlock.GenerateMerkleRoot();
+
+
+
+        }
     }
 }
