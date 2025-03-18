@@ -85,7 +85,7 @@ namespace ShakaCoinTests
         [TestMethod]
         public void TestMerkleRoot()
         {
-            Block newBlock = new Block();
+            Block newBlock = new Block(0);
 
             for (int i = 0; i<8; i++)
             {
