@@ -8,7 +8,7 @@ namespace ShakaCoinTests
         [TestMethod]
         public void TestReadDB()
         {
-            FileManagement fm = new FileManagement();
+            FileManagement fm = FileManagement.Instance;
 
             var key = Hasher.GetBytesQuick("TestKey");
             var value = Hasher.GetBytesQuick("TestValue");
@@ -28,7 +28,7 @@ namespace ShakaCoinTests
         [TestMethod]
         public void TestReadNull()
         {
-            FileManagement fm = new FileManagement();
+            FileManagement fm = FileManagement.Instance;
 
             var key = Hasher.GetBytesQuick("TestKey123");
 
