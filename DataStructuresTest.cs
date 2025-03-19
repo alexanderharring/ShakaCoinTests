@@ -85,16 +85,29 @@ namespace ShakaCoinTests
         [TestMethod]
         public void TestMerkleRoot()
         {
-            Block newBlock = new Block(0);
+            Block nb = new Block();
 
-            for (int i = 0; i<8; i++)
+            for (int i = 0; i < 100; i++)
             {
-                newBlock.AddTransaction(generateTransaction());
+                nb.AddTransaction(generateTransaction());
             }
 
-            newBlock.GenerateMerkleRoot();
+            WorkingBlock wb = new WorkingBlock(nb);
 
+            byte[][] ab = wb.GenerateMerkleProof(wb.Transactions[60]);
 
+            byte[] currentHash = Hasher.Hash256(wb.Transactions[60].GetBytes());
+
+            for (int i = 0; i < ab.Length; i++)
+            {
+                byte[] bigArr = new byte[64];
+                Buffer.BlockCopy(Hasher.GetSmallerByteArray(currentHash, ab[i]), 0, bigArr, 0, 32);
+                Buffer.BlockCopy(Hasher.GetLargerByteArray(currentHash, ab[i]), 0, bigArr, 32, 32);
+
+                currentHash = Hasher.Hash256(bigArr);
+            }
+
+            Assert.AreEqual(Hasher.GetHexStringQuick(currentHash), Hasher.GetHexStringQuick(wb.MerkleRoot));
 
         }
     }
