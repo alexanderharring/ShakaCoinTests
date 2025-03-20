@@ -92,7 +92,7 @@ namespace ShakaCoinTests
         [TestMethod]
         public void TestReadWriteWallet()
         {
-            FileManagement fm = new FileManagement();
+            FileManagement fm = FileManagement.Instance;
 
             byte[] examplePrivK = Hasher.GetBytesFromHexStringQuick("CB02D49D0E1DFB5900F4084E470A199DB11CFFE6A0187B2D0FA35A957EC7B9FC");
 
@@ -100,7 +100,6 @@ namespace ShakaCoinTests
 
             Assert.AreEqual(Hasher.GetHexStringQuick(fm.ReadWallet("exampleWallet0")), Hasher.GetHexStringQuick(examplePrivK));
         
-            fm.DBCLose(); 
         }
     }
 }

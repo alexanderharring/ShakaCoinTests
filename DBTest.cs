@@ -21,7 +21,6 @@ namespace ShakaCoinTests
 
             fm.DBRemoveValue(key);
 
-            fm.DBCLose();
 
         }
 
@@ -39,7 +38,6 @@ namespace ShakaCoinTests
 
             Assert.AreEqual(null, fm.DBGetValue(key));
 
-            fm.DBCLose();
         }
     }
 }
