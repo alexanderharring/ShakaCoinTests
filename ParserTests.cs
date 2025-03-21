@@ -79,7 +79,7 @@ namespace ShakaCoinTests
             nb.BlockHeight = 54321;
             nb.PreviousBlockHash = Hasher.Hash256([0x0F]);
             
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 nb.AddTransaction(generateTransaction());
             }
