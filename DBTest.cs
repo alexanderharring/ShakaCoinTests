@@ -1,4 +1,5 @@
 using ShakaCoin.Blockchain;
+using ShakaCoin.PaymentData;
 
 namespace ShakaCoinTests
 {
@@ -37,6 +38,18 @@ namespace ShakaCoinTests
             }
 
             Assert.AreEqual(null, fm.DBGetValue(key));
+
+        }
+
+        [TestMethod]
+        public void TestGenesisBlock()
+        {
+            FileManagement fm = FileManagement.Instance;
+
+            fm.CheckGenesisBlock();
+            Block rebuild = Parser.ParseBlock(FileManagement.ReadBlock(0));
+
+            Assert.AreEqual(Hasher.GetHexStringQuick(rebuild.GetBlockHash()), "00000044EC8A5140E339D18684DA294FD36106859123468A9CBC9058B3004664");
 
         }
     }
