@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShakaCoin.Blockchain;
+using ShakaCoin.Datastructures;
 using ShakaCoin.PaymentData;
 
 namespace ShakaCoinTests
@@ -95,5 +96,22 @@ namespace ShakaCoinTests
             Assert.AreEqual(Hasher.GetHexStringQuick(nb.GetBlockHash()), Hasher.GetHexStringQuick(recon.GetBlockHash()));
         }
 
+
+        [TestMethod]
+        public void TestBloomFilterParse()
+        {
+            OutputBloomFilter obf = new OutputBloomFilter();
+            
+            for (byte i = 0;i < 150; i++)
+            {
+                obf.AddItem([i]);
+            }
+
+            byte[] bbf = obf.GetBytes();
+
+            OutputBloomFilter recon = Parser.ParseBloomFilter(bbf);
+
+            Assert.IsFalse(recon.ProbablyContains([151]));
+        }
     }
 }
