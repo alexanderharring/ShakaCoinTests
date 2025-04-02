@@ -58,7 +58,6 @@ namespace ShakaCoinTests
                     tx42 = tx;
                 }
 
-                Console.WriteLine(tx.CalculateFeeRate());
                 root.Insert(tx);
             }
 

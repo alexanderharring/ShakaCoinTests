@@ -78,17 +78,6 @@ namespace ShakaCoinTests
             Assert.IsTrue((ix.IsCoinbase() && gTransaction.IsCoinbase()));
         }
 
-        //[TestMethod]
-        public void TestFeeCalculation()
-        {
-            byte[] txH = Hasher.Hash256(Hasher.GetBytesFromHexStringQuick("ABC"));
-
-            Input i0 = new Input(txH, 0);
-            Input i1 = new Input(txH, 1);
-            Input i2 = new Input(txH, 2);
-            Input i3 = new Input(txH, 3);
-        }
-
         [TestMethod]
         public void TestReadWriteWallet()
         {
